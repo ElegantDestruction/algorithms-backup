@@ -1,0 +1,21 @@
+
+array A = {2,5,5,5};
+array B = {2,2,3,5,5,7};
+vector C = [];
+starting_pos = 0;
+
+for (int i = 0; i <= A.len(); i++) {
+	for (starting_pos; starting_pos <= B.len(); starting_pos++) {
+		if (A[i] == B[starting_pos]) {
+			C.push_back(A[i]);
+			starting_pos++;
+			break;
+		}
+		else if (A[i] < B[starting_pos]) {
+			starting_pos--;
+			break;
+		}
+	}
+}
+
+print(C);
