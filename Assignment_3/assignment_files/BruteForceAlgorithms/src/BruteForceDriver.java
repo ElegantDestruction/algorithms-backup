@@ -3,7 +3,7 @@ import java.awt.Point;
 import java.util.Random;
 
 /**
- * @author YourNameHere
+ * @author Jacob Hillebrand
  *
  */
 public class BruteForceDriver {
@@ -24,39 +24,67 @@ public class BruteForceDriver {
 		//Use brute to print out sorted array
 		brute.printArray(list);
 
+		
+		//Space it out
+		System.out.println("\n");
 
 
 		//Test SequentialSearch
 		//Arbitrarily chosen search key
-		int search_key = 10;
+		int low_edge = list[0];
+		int high_edge = list[list.length - 1];
+		int pos_case = list[121];
+		int neg_case = -32;
 		//Call sequential search
-		int result = brute.sequentialSearch(list, search_key);
+		int le_result = brute.sequentialSearch(list, low_edge);
+		int he_result = brute.sequentialSearch(list, high_edge);
+		int pos_result = brute.sequentialSearch(list, pos_case);
+		int neg_result = brute.sequentialSearch(list, neg_case);
 		// If we found it tell where. If not, say not found
-		if (result == -1) {
-			System.out.println("Key \"" + search_key + "\" not found in list");
-		}else {
-			System.out.println("Key \"" + search_key + "\" found in list at position \"" + result + "\"");
+		int search_arr[] = {low_edge, high_edge, pos_case, neg_case};
+		int result_arr[] = {le_result, he_result, pos_result, neg_result};
+		for (int x = 0; x < search_arr.length; x++) {
+			if (result_arr[x] == -1) {
+				System.out.println("Key \"" + search_arr[x] + "\" not found in list");
+			}else {
+			
+				System.out.println("Key \"" + search_arr[x] + "\" found in list at position \"" + result_arr[x] + "\"");
+			}
 		}
 
+
+		//Space it out
+		System.out.println("\n");
 
 
 		//Test BruteForceStringMatch
 		//Make a text and some pattern
 		String text = "This will be some text to search in";
-		String pattern = "is";
-
+		String l_bound = "Thi";
+		String u_bound = " in";
+		String p_case = "e tex";
+		String n_case = "Huawei";
 		//run it through the string matcher
-		result = brute.bruteForceStringMatch(text, pattern);
+		le_result = brute.bruteForceStringMatch(text, l_bound);
+		he_result = brute.bruteForceStringMatch(text, u_bound);
+		pos_result = brute.bruteForceStringMatch(text, p_case);
+		neg_result = brute.bruteForceStringMatch(text, n_case);
 
 		// If we found it tell where. If not, say not found
-		if (result == -1) {
-			System.out.println("Pattern \"" + pattern + "\" not found in text");
-		}else {
-			System.out.println("Pattern \"" + pattern + "\" found in text at position \"" + result + "\"");
+		String pattern_arr[] = {l_bound, u_bound, p_case, n_case};
+		int string_match_results[] = {le_result, he_result, pos_result, neg_result};
 
+		for (int i = 0; i < pattern_arr.length; i++) {
+			if (string_match_results[i] == -1) {
+				System.out.println("Pattern \"" + pattern_arr[i] + "\" not found in text");
+			}else {
+				System.out.println("Pattern \"" + pattern_arr[i] + "\" found in text at position \"" + string_match_results[i] + "\"");
+
+			}
 		}
 
-
+		//Space it out
+		System.out.println("\n");
 
 		//Test BruteForceClosestPoints
 		Point[] points = new Point[3];
