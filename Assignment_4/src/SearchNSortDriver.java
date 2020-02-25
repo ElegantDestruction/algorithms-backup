@@ -85,7 +85,7 @@ public class SearchNSortDriver {
 		 */
 		
 		//Sort q_list
-		srch.quickSort(q_list, 0, q_list.size() - 2);
+		srch.quickSort(q_list, 0, q_list.size() - 1);
 		//TODO Remove
 		System.out.println("Exited quicksort");
 		//Test if sorted
@@ -98,7 +98,7 @@ public class SearchNSortDriver {
 
 		//Printout Markings
 		System.out.println("End Quick Sort Testing.\nBegin Recursive Binary Search Testing");
-
+		
 
 
 		/*
@@ -123,7 +123,7 @@ public class SearchNSortDriver {
                                   System.out.println("Key \"" + search_arr[x] + "\" not found in list");
                           }else {
                         
-                                  System.out.println("Key \"" + search_arr[x] + "\" found in list at position \"" + result_arr[x] + "\"");                                                                         
+                                  System.out.println("Key \"" + search_arr[x] + "\" found in list at position \"" + rb_result_arr[x] + "\"");                                                                         
                           }
                   }
 
@@ -154,7 +154,7 @@ public class SearchNSortDriver {
                                   System.out.println("Key \"" + search_arr[x] + "\" not found in list");
                           }else {
                         
-                                  System.out.println("Key \"" + search_arr[x] + "\" found in list at position \"" + result_arr[x] + "\"");                                                                         
+                                  System.out.println("Key \"" + search_arr[x] + "\" found in list at position \"" + ib_result_arr[x] + "\"");                                                                         
                           }
                   }
 

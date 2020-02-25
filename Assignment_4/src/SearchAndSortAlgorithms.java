@@ -137,6 +137,10 @@ public class SearchAndSortAlgorithms implements SearchableAndSortable {
 	 */
         public void quickSort(ArrayList<Integer> A, int low, int high) {
 		if (low < high) {
+
+			//TODO Remove
+			printArrayList(A);
+
 			//Partition the arraylist with partition() function
 			int part_index = partition(A, low, high);
 
@@ -162,12 +166,18 @@ public class SearchAndSortAlgorithms implements SearchableAndSortable {
 		//Assign high -> rightmost index + 1
 		int pivot = A.get(left);
 		int low = left;
-		int high = right + 1;
+		int high = right;
 
 		//Repeat until low >= high
-		do {
+		while (low < high) {
+			//TODO Remove
+			printArrayList(A);
+
+			//Avoid pivot w/ low
+			low++;
+
 			//Repeat until A[low] >= pivot
-			while (A.get(low) < pivot && low < right) {
+			while (low <= right && A.get(low) < pivot) {
 				//Increment low
 				low++;
 				//TODO Remove
@@ -175,21 +185,24 @@ public class SearchAndSortAlgorithms implements SearchableAndSortable {
 			}
 			
 			//Repeat until A[high] <= pivot
-			while (A.get(high) > pivot && high > left) {
+			while (high >= left && A.get(high) > pivot) {
 				//Decrement high
 				high--;
 				//TODO Remove
 				System.out.println("high: " + high);
 			}
+			
+			//If the values are legal
+			if (low <= right && low < high) {
+				//Swap the values at low and high
+				swap(A, low, high);
+			}
 
-			//Swap the values at low and high
-			swap(A, low, high);
-		} while (low < high);
+		}
 
-		//Undo the last swap, and swap the pivot with the
-		//first element in the list
-		swap(A, low, high);
+		//Put the pivot where it belongs
 		swap(A, left, high);
+
 		return high;
 	}
 
@@ -210,6 +223,7 @@ public class SearchAndSortAlgorithms implements SearchableAndSortable {
 				System.out.println();
 			}
 		}
+		System.out.println();
 	}
 
 	/*
@@ -220,6 +234,8 @@ public class SearchAndSortAlgorithms implements SearchableAndSortable {
 	 * OUTPUT: Indexes given will be swapped in given arraylist
 	 */
 	public void swap(ArrayList<Integer> data, int val_1, int val_2) {
+		//TODO Remove
+		System.out.println("Entered Swap Function");
 		//Create temp variable of value 1
 		int temp = data.get(val_1);
 		//Set value 2 to the sum of the 2
@@ -228,6 +244,8 @@ public class SearchAndSortAlgorithms implements SearchableAndSortable {
 		data.set(val_1, data.get(val_2) - temp);
 		//Set value 2 to be temp
 		data.set(val_2, temp);
+		//TODO Remove
+		System.out.println("Exiting Swap Function");
 	}
 	
 
