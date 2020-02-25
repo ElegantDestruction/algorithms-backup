@@ -22,14 +22,12 @@ public class SearchNSortDriver {
 		ArrayList<Integer> q_list = new ArrayList<Integer>();
 		for (int i = 0; i < n; i++) {
 			i_list.add(random.nextInt(n*10));
-			//q_list.add(random.nextInt(n*10));
-		}
-		//TODO Switch q_list back to full n size
-		for (int j = 0; j < 10; j++) {
 			q_list.add(random.nextInt(n*10));
 		}
 		//Print the lists
+		System.out.println("i_list:");
 		srch.printArrayList(i_list);
+		System.out.println("q_list:");
 		srch.printArrayList(q_list);
 		
 		//Printout markings
@@ -61,7 +59,7 @@ public class SearchNSortDriver {
                   }
 
 		//Printout Markings
-		System.out.println("End Sequential Search Testing.\nBegin Insertion Sort Testing");
+		System.out.println("End Sequential Search Testing.\n\nBegin Insertion Sort Testing");
 		
 		/*
 		 * Test Insertion Sort
@@ -78,7 +76,7 @@ public class SearchNSortDriver {
 		}
 
 		//Printout Markings
-		System.out.println("End Insertion Sort Testing.\nBegin Quick Sort Testing");
+		System.out.println("End Insertion Sort Testing.\n\nBegin Quick Sort Testing");
 
 		/* 
 		 * Test Quick Sort
@@ -86,8 +84,6 @@ public class SearchNSortDriver {
 		
 		//Sort q_list
 		srch.quickSort(q_list, 0, q_list.size() - 1);
-		//TODO Remove
-		System.out.println("Exited quicksort");
 		//Test if sorted
                 if (isSorted(q_list) == 1) {
         		System.out.println("Insertion Sort of q_list successful!");
@@ -97,7 +93,7 @@ public class SearchNSortDriver {
                 }
 
 		//Printout Markings
-		System.out.println("End Quick Sort Testing.\nBegin Recursive Binary Search Testing");
+		System.out.println("End Quick Sort Testing.\n\nBegin Recursive Binary Search Testing");
 		
 
 
@@ -128,7 +124,7 @@ public class SearchNSortDriver {
                   }
 
 		//Printout Markings
-		System.out.println("End Recursive Binary Search Testing.\nBegin Iterative Binary Search Testing");
+		System.out.println("End Recursive Binary Search Testing.\n\nBegin Iterative Binary Search Testing");
 
 
 		/* 

@@ -138,9 +138,6 @@ public class SearchAndSortAlgorithms implements SearchableAndSortable {
         public void quickSort(ArrayList<Integer> A, int low, int high) {
 		if (low < high) {
 
-			//TODO Remove
-			printArrayList(A);
-
 			//Partition the arraylist with partition() function
 			int part_index = partition(A, low, high);
 
@@ -170,8 +167,6 @@ public class SearchAndSortAlgorithms implements SearchableAndSortable {
 
 		//Repeat until low >= high
 		while (low < high) {
-			//TODO Remove
-			printArrayList(A);
 
 			//Avoid pivot w/ low
 			low++;
@@ -180,16 +175,12 @@ public class SearchAndSortAlgorithms implements SearchableAndSortable {
 			while (low <= right && A.get(low) < pivot) {
 				//Increment low
 				low++;
-				//TODO Remove
-				System.out.println("low: " + low);
 			}
 			
 			//Repeat until A[high] <= pivot
 			while (high >= left && A.get(high) > pivot) {
 				//Decrement high
 				high--;
-				//TODO Remove
-				System.out.println("high: " + high);
 			}
 			
 			//If the values are legal
@@ -219,11 +210,11 @@ public class SearchAndSortAlgorithms implements SearchableAndSortable {
 			//Print out the current element to java console
 			System.out.print(data.get(i) + " ");
 			//If the index is > 0 and the value is a multiple of 100, print a new line
-			if (i % 100 == 0 && i > 0) {
+			if (i % 40 == 0 && i > 0) {
 				System.out.println();
 			}
 		}
-		System.out.println();
+		System.out.println("\n");
 	}
 
 	/*
@@ -234,8 +225,6 @@ public class SearchAndSortAlgorithms implements SearchableAndSortable {
 	 * OUTPUT: Indexes given will be swapped in given arraylist
 	 */
 	public void swap(ArrayList<Integer> data, int val_1, int val_2) {
-		//TODO Remove
-		System.out.println("Entered Swap Function");
 		//Create temp variable of value 1
 		int temp = data.get(val_1);
 		//Set value 2 to the sum of the 2
@@ -244,8 +233,6 @@ public class SearchAndSortAlgorithms implements SearchableAndSortable {
 		data.set(val_1, data.get(val_2) - temp);
 		//Set value 2 to be temp
 		data.set(val_2, temp);
-		//TODO Remove
-		System.out.println("Exiting Swap Function");
 	}
 	
 
