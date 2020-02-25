@@ -167,15 +167,19 @@ public class SearchAndSortAlgorithms implements SearchableAndSortable {
 		//Repeat until low >= high
 		do {
 			//Repeat until A[low] >= pivot
-			while (A.get(low) < pivot) {
+			while (A.get(low) < pivot && low < right) {
 				//Increment low
 				low++;
+				//TODO Remove
+				System.out.println("low: " + low);
 			}
 			
 			//Repeat until A[high] <= pivot
-			while (A.get(high) > pivot) {
+			while (A.get(high) > pivot && high > left) {
 				//Decrement high
 				high--;
+				//TODO Remove
+				System.out.println("high: " + high);
 			}
 
 			//Swap the values at low and high
