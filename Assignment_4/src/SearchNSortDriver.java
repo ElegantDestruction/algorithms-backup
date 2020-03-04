@@ -1,180 +1,100 @@
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
-
-/** 
- * @author Jacob Hillebrand
+/**
+ * @author masont
  *
  */
-
 public class SearchNSortDriver {
-	
+
 	public static void main(String[] args) {
-		
-		SearchAndSortAlgorithms srch = new SearchAndSortAlgorithms();
-
-		/*
-		 * Make two arraylists, fill with random numbers so they can be sorted
-		 */
-		int n = 1000;
+		int points = 0;
+		int n = 100;
 		Random random = new Random();
-		ArrayList<Integer> i_list = new ArrayList<Integer>();
-		ArrayList<Integer> q_list = new ArrayList<Integer>();
-		for (int i = 0; i < n; i++) {
-			i_list.add(random.nextInt(n*10));
-			q_list.add(random.nextInt(n*10));
+//Testing binarySearches		
+		int pointsSearch = 0;
+		ArrayList<Integer> list1 = new ArrayList<Integer>();
+		ArrayList<Integer> list2 = new ArrayList<Integer>();
+		ArrayList<Integer> list3 = new ArrayList<Integer>();
+		
+		//fill lists with same data
+		for(int i = 0; i < n ; i++ ) {
+			int value = random.nextInt(n*10);
+			list1.add( value  );
+			list2.add( value);
+			list3.add(value);
+			
 		}
-		//Print the lists
-		System.out.println("i_list:");
-		srch.printArrayList(i_list);
-		System.out.println("q_list:");
-		srch.printArrayList(q_list);
 		
-		//Printout markings
-		System.out.println("\nEnd arraylist building, begin testing.\n");
-		System.out.println("Begin Sequential Search Testing");
-
-		/*
-		 * Test Sequential Search
-		 */
-		int low_edge = i_list.get(0);
-		int high_edge = i_list.get(i_list.size() - 1);
-		int pos_case = i_list.get(495);
-		int neg_case = -32;
-		//Call sequential search
-		int ss_le_result = srch.sequentialSearch(i_list, low_edge);
-		int ss_he_result = srch.sequentialSearch(i_list, high_edge);
-		int ss_pos_result = srch.sequentialSearch(i_list, pos_case);
-		int ss_neg_result = srch.sequentialSearch(i_list, neg_case);
-		//If we found it, tell where. If not, say "not found"
-		int search_arr[] = {low_edge, high_edge, pos_case, neg_case};
-		int result_arr[] = {ss_le_result, ss_he_result, ss_pos_result, ss_neg_result};
-		for (int x = 0; x < search_arr.length; x++) {
-                          if (result_arr[x] == -1) {
-                                  System.out.println("Key \"" + search_arr[x] + "\" not found in list");
-                          }else {
-                        
-                                  System.out.println("Key \"" + search_arr[x] + "\" found in list at position \"" + result_arr[x] + "\"");                                                                         
-                          }
-                  }
-
-		//Printout Markings
-		System.out.println("End Sequential Search Testing.\n\nBegin Insertion Sort Testing");
+		//Using Collection in Java to sort list1.
+		Collections.sort(list1);
+		SearchAndSortAlgorithms sort = new SearchAndSortAlgorithms();
+	
+//Test first element		
+		int foundIndexRecursive = sort.binarySearchRecursive(list1, list1.get(0), 0, list1.size()-1);
+		int foundIndexIterative = sort.binarySearchIterative(list1, list1.get(0));
+		//System.out.println("foundIndex is "+foundIndex);
+		if(foundIndexRecursive == foundIndexIterative)
+			pointsSearch+=5;
 		
-		/*
-		 * Test Insertion Sort
-		 */
-
-		//Sort i_list
-		srch.insertionSort(i_list);
-		//Test if sorted
-		if (isSorted(i_list) == 1) {
-			System.out.println("Insertion Sort of i_list successful!");
-		}
-		else {
-			System.out.println("Insertion Sort of i_list FAILED!");
-		}
-
-		//Printout Markings
-		System.out.println("End Insertion Sort Testing.\n\nBegin Quick Sort Testing");
-
-		/* 
-		 * Test Quick Sort
-		 */
+//Test last element		
+		foundIndexRecursive = sort.binarySearchRecursive(list1, list1.get(n-1), 0, list1.size()-1);
+		foundIndexIterative = sort.binarySearchIterative(list1, list1.get(n-1));
+		if(foundIndexRecursive == foundIndexIterative)
+			pointsSearch+=5;
 		
-		//Sort q_list
-		srch.quickSort(q_list, 0, q_list.size() - 1);
-		//Test if sorted
-                if (isSorted(q_list) == 1) {
-        		System.out.println("Insertion Sort of q_list successful!");
-        	}       
-        	else {
-                	System.out.println("Insertion Sort of q_list FAILED!");
-                }
-
-		//Printout Markings
-		System.out.println("End Quick Sort Testing.\n\nBegin Recursive Binary Search Testing");
+//Test 10th (middle) element		
+		foundIndexRecursive = sort.binarySearchRecursive(list1, list1.get(10), 0, list1.size()-1);
+		foundIndexIterative = sort.binarySearchIterative(list1, list1.get(10));
+		if(foundIndexRecursive == foundIndexIterative)
+			pointsSearch+=5;
 		
-
-
-		/*
-		 * Test Recursive Binary Search
-		 */
+//Test element not found		
+		foundIndexRecursive = sort.binarySearchRecursive(list1, 9999999, 0, list1.size()-1);
+		foundIndexIterative = sort.binarySearchIterative(list1, 9999999);	
+		if(foundIndexRecursive == foundIndexIterative)
+			pointsSearch+=5;
 		
-		//Create Test Cases
-		low_edge = i_list.get(0);
-		high_edge = i_list.get(i_list.size() - 1);
-		pos_case = i_list.get(495);
-		neg_case = -32;
-		//Run searches for test cases
-		int rb_le_result = srch.sequentialSearch(i_list, low_edge);
-		int rb_he_result = srch.sequentialSearch(i_list, high_edge);
-		int rb_pos_result = srch.sequentialSearch(i_list, pos_case);
-		int rb_neg_result = srch.sequentialSearch(i_list, neg_case);
-		//If we found it, tell where. If not, say "not found"
-		int rb_search_arr[] = {low_edge, high_edge, pos_case, neg_case};
-		int rb_result_arr[] = {rb_le_result, rb_he_result, rb_pos_result, rb_neg_result};
-		for (int x = 0; x < rb_search_arr.length; x++) {
-                          if (result_arr[x] == -1) {
-                                  System.out.println("Key \"" + search_arr[x] + "\" not found in list");
-                          }else {
-                        
-                                  System.out.println("Key \"" + search_arr[x] + "\" found in list at position \"" + rb_result_arr[x] + "\"");                                                                         
-                          }
-                  }
-
-		//Printout Markings
-		System.out.println("End Recursive Binary Search Testing.\n\nBegin Iterative Binary Search Testing");
-
-
-		/* 
-		 * Test Iterative Binary Search
-		 */
-
-
-		//Create Test Cases
-		low_edge = i_list.get(0);
-		high_edge = i_list.get(i_list.size() - 1);
-		pos_case = i_list.get(495);
-		neg_case = -32;
-		//Run searches for test cases
-		int ib_le_result = srch.sequentialSearch(i_list, low_edge);
-		int ib_he_result = srch.sequentialSearch(i_list, high_edge);
-		int ib_pos_result = srch.sequentialSearch(i_list, pos_case);
-		int ib_neg_result = srch.sequentialSearch(i_list, neg_case);
-		//If we found it, tell where. If not, say "not found"
-		int ib_search_arr[] = {low_edge, high_edge, pos_case, neg_case};
-		int ib_result_arr[] = {ib_le_result, ib_he_result, ib_pos_result, ib_neg_result};
-		for (int x = 0; x < ib_search_arr.length; x++) {
-                          if (result_arr[x] == -1) {
-                                  System.out.println("Key \"" + search_arr[x] + "\" not found in list");
-                          }else {
-                        
-                                  System.out.println("Key \"" + search_arr[x] + "\" found in list at position \"" + ib_result_arr[x] + "\"");                                                                         
-                          }
-                  }
-
-		//Printout Markings
-		System.out.println("Assignment 4 Testing Complete.");
-
-	}
-
-
-	/*
-	 * FUNCTION: isSorted(A[0..n-1])
-	 * Simple function to check if a list is sorted
-	 * INPUT: arraylist A[0..n-1]
-	 * OUTPUT: 1 if list is sorted, 0 if not sorted
-	 */
-
-	public static int isSorted(ArrayList<Integer> list) {
-		for (int i = 1; i < list.size(); i++) {
-			if (list.get(i-1) > list.get(i)) {
-				return 0;
+		System.out.println("Points for searching is "+pointsSearch+ " out of possible 20 points in searching");
+		points+=pointsSearch;
+		
+//InsertionSort 10 points
+		
+		sort.insertionSort(list2);
+		
+		//compare sort of list2 to list1 sorted.
+		boolean match = true;
+		for(int i =0; i< list1.size(); i++) {
+			if(((int) list1.get(i)) != ((int)list2.get(i)) ) {
+				match = false;
+				System.out.println("Element list1 "+list1.get(i)+ " at index "+ i + " does not match list 2 "+list2.get(i) +" after insertion sort");
 			}
+	    }
+		if(match) {
+			System.out.println("Insertion sort works for 10 points");
+			points += 10;
+			System.out.println("Total points are now "+points	);	
 		}
-		return 1;
+						
+//QuickSort 20 points
+
+		sort.quickSort(list3, 0, list3.size()-1);
+		
+		match = true;
+		for(int i =0; i< list1.size(); i++) {
+			if(((int) list1.get(i)) != ((int)list3.get(i)) ) {
+				match = false;
+				System.out.println("Element list1 "+list1.get(i)+ " at index "+ i + " does not match list 3 "+list3.get(i) +" after Quicksort");
+			}
+	    }
+		if(match) {
+			System.out.println("Quick sort works for 20 points");
+			points += 20;
+			System.out.println("Total points are now "+points	);
+			
+		}
+		System.out.println("Final points are now "+points	);
 	}
-
-
 }
